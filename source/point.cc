@@ -13,6 +13,7 @@ std::istream& operator>>(std::istream& ins, Point& rhs) {
     ins >> rhs.y;
     return ins;
 }
+
 std::ostream& operator<<(std::ostream& outs, const Point& rhs){
     outs << "(" << rhs.x << "," << rhs.y << ")";
     return outs;
