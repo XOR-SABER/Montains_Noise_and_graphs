@@ -15,14 +15,16 @@ class Noise{
         std::vector<double> seeds; 
         std::vector<Vector2D> randomized_field;  
         int seed; 
+        double perlin(const double&, const double&) const;
     public:
         // The Default constructor is more of a default testing seed.. 
         Noise();
         // The non-default constructor is the one that should be actually used. 
         Noise(const uint32_t& intial_seed);
+        //This is used for the perlin algo to fade
         constexpr double fade(const double &) const noexcept; 
-        constexpr double mix(const double &, const double &, const double &) const noexcept; 
-        double perlin(const double&, const double&) const;
+        //
+
         double perlin(const Point &) const; 
 };
 
