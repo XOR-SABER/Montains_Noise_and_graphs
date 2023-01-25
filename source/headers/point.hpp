@@ -12,13 +12,19 @@ private:
 public:
     Point();
     Point(const int64_t& init_x, const int64_t& init_y);
-    inline constexpr double distance_from_orgin() const {
+    inline constexpr double dot_product(const Point& rhs) const noexcept{
+        return ((x * rhs.x) + (y * rhs.y));
+    }
+    inline constexpr double dot_product(const int64_t& rx, const int64_t& ry) const noexcept {
+        return dot_product(Point{rx, ry});
+    }
+    inline constexpr double distance_from_orgin() const noexcept{
         return distance_to(0,0);
     }
-    inline constexpr double distance_to(const Point& rhs) const{
+    inline constexpr double distance_to(const Point& rhs) const noexcept{
         return distance_to(rhs.x,rhs.y);
     }
-    inline constexpr double distance_to(const int64_t& rx, const int64_t& ry) const {
+    inline constexpr double distance_to(const int64_t& rx, const int64_t& ry) const noexcept{
         return hypot(rx - this->x, ry - this->y);
     }
     friend std::istream& operator>>(std::istream& ins, Point& rhs);

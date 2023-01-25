@@ -1,35 +1,26 @@
 #ifndef _ALEX_NOISE
 #define _ALEX_NOISE
 
-#include <cstdint>
 #include <algorithm>
+#include <cstdint>
 #include <vector>
 #include <cmath>
+
+#include "point.hpp"
 
 class Noise{
     private: 
         std::vector<double> seeds; 
+        std::vector<Point> 
     public:
-        Noise() : Noise(0,100) {}
-        Noise(const uint32_t& intial_seed, size_t seed_size) {
-            srand(intial_seed);
-            seeds.reserve(seed_size);
-            //use lamada's when they least suspect it..
-            auto gen = [](){return rand() % 100;};
-            std::generate(seeds.begin(), seeds.end(), gen);
-        }
-        std::vector<size_t> PerlinNoise1D(const size_t& size, const size_t& number_octaves){
-            std::vector<size_t> retval(size);
-            for(size_t i = 0; i < size; i++) {
-                double fNoise = 0.0f;
-                for(size_t o = 0; o < number_octaves; o++) {
-                    int nPitch = size >> o;
-                    int nSample1 = (i / nPitch) * nPitch;
-                    int nSample2;
-                    //https://www.youtube.com/watch?v=6-0UaeJBumA&t=679s
-                }
-            }
-        }
+        // The Default constructor is more of a default testing seed.. 
+        Noise();
+        // The non-default constructor is the one that should be actually used. 
+        Noise(const uint32_t& intial_seed);
+        constexpr double fade(const double &t) const; 
+        constexpr double mix(const double &a, const double &b, const double &c) const; 
+        double perlin(const int64_t& rx, const int64_t& ry) const;
+        double perlin(const Point &p) const; 
 };
 
 
