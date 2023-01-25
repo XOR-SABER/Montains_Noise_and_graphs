@@ -4,23 +4,26 @@
 #include <algorithm>
 #include <cstdint>
 #include <vector>
+#include <random>
 #include <cmath>
 
 #include "point.hpp"
+#include "vector2d.hpp"
 
 class Noise{
     private: 
         std::vector<double> seeds; 
-        std::vector<Point> 
+        std::vector<Vector2D> randomized_field;  
+        int seed; 
     public:
         // The Default constructor is more of a default testing seed.. 
         Noise();
         // The non-default constructor is the one that should be actually used. 
         Noise(const uint32_t& intial_seed);
-        constexpr double fade(const double &t) const; 
-        constexpr double mix(const double &a, const double &b, const double &c) const; 
-        double perlin(const int64_t& rx, const int64_t& ry) const;
-        double perlin(const Point &p) const; 
+        constexpr double fade(const double &) const noexcept; 
+        constexpr double mix(const double &, const double &, const double &) const noexcept; 
+        double perlin(const double&, const double&) const;
+        double perlin(const Point &) const; 
 };
 
 

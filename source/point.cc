@@ -4,17 +4,17 @@
 Point::Point() : Point(0,0) {}
 
 Point::Point(const int64_t& init_x, const int64_t& init_y) {
-    this->x = init_x;
-    this->y = init_y;
+    this->_x = init_x;
+    this->_y = init_y;
 }
 
 std::istream& operator>>(std::istream& ins, Point& rhs) {
-    ins >> rhs.x;
-    ins >> rhs.y;
+    ins >> rhs._x;
+    ins >> rhs._y;
     return ins;
 }
 
 std::ostream& operator<<(std::ostream& outs, const Point& rhs){
-    outs << "(" << rhs.x << "," << rhs.y << ")";
+    outs << "(" << rhs._x << "," << rhs._y << ")";
     return outs;
 }
