@@ -7,14 +7,13 @@ int main() {
     Point B(3,3);
     std::cout << "A: " << A << " is " << A.distance_from_orgin() << " from the orgin\n";
     //Code here:
-    const int MAP_SIZE = 25;
+    const int MAP_SIZE = 50;
     int mappu[MAP_SIZE][MAP_SIZE]; 
 
     
     Noise dis(time(NULL));
 
     const int MAX_ELEVATION = 255;
-    const int MULTIPLIER = 500; 
 
     for(size_t x = 0; x < MAP_SIZE; x++) {
         for(size_t y = 0; y < MAP_SIZE; y++) {
