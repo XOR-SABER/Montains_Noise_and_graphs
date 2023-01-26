@@ -16,6 +16,7 @@ private:
 public:
     World();
     World(const size_t&, const uint16_t&, const uint16_t&);
+    void smoothen();
     friend std::ostream& operator<<(std::ostream& outs, const World& rhs);
 };
 
