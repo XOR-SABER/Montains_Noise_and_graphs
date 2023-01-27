@@ -15,15 +15,19 @@
 class World {
 private:
     const uint16_t MAP_SIZE;
-    const uint16_t MAX_ELEVATION;
+    const uint16_t MAX_ELEVATION = 255;
+    double avg_height = 0; 
+    std::string world_type;
     std::vector<std::vector<uint32_t>> world_map; 
-public:
-    World();
-    World(const size_t&, const uint16_t&, const uint16_t&);
-    World(const World&);
+protected:
+    void generate_world(); 
     void smoothen_low();
     void smoothen_high();
     void amplifiy();
+public:
+    World();
+    World(const size_t&, const uint16_t&);
+    World(const World&);
     void sharpen(const uint32_t& scale);
     void print_color();
     friend std::ostream& operator<<(std::ostream& outs, const World& rhs);
