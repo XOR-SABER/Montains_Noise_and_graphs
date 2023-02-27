@@ -20,6 +20,7 @@ Noise::Noise(const uint32_t& intial_seed) {
     auto populate_field = [=]() mutable{return Vector2D(d_dist(rng), d_dist(rng));};
     std::generate(randomized_field.begin(), randomized_field.end(), populate_field);
 }
+
 constexpr double Noise::fade(const double &t) const noexcept{
     return (t * t * t * (t * (t * 6 - 15) + 10));
 }

@@ -2,6 +2,7 @@
 #define _AlEX_WORLD_ 
 
 #include "noise.hpp"
+#include "tile.hpp"
 #include "colors.h"
 // Might change that to OPENGL in the future.. Let me see if I can? 
 // I decided to split it into other projects. 
@@ -18,7 +19,7 @@ private:
     const uint16_t MAX_ELEVATION = 255;
     double avg_height = 0; 
     std::string world_type;
-    std::vector<std::vector<uint32_t>> world_map; 
+    std::vector<std::vector<Tile>> world_map; 
 protected:
     void generate_world(); 
     void smoothen_low();
