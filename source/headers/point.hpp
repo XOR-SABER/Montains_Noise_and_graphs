@@ -45,6 +45,12 @@ class Point{
             outs << "(" << rhs._x << "," << rhs._y << ")";
             return outs;
         }
+        virtual constexpr inline size_t operator()(const Point& p) const noexcept {
+            return (std::hash<int64_t>()(_x) ^ std::hash<int64_t>()(_y));
+        }
+        inline constexpr bool operator==(const Point& p) const noexcept {
+            return ((this->_x == p._x) && (this->_y == p._y));
+        }
             
 };
 
