@@ -1,25 +1,27 @@
 #include "headers/pathfinder.hpp"
 
-
-std::vector<Point> Pathfinder::Dijkstras(const World &map, const Point& start, const Point& end) {
+std::vector<Point> Pathfinder::A_star(const World &map, const Point& start, const Point& end) {
+    auto manhattan = [](const Point &p1, const Point &p2){
+        return (abs(p1.x() - p2.x()) + abs(p1.y() - p2.y()));
+    };
     const uint16_t MAP_SIZE = map.get_size(); 
     const Tile FIRST_TILE = map.world_map[start.x()][start.y()];
     const Tile END_TILE = map.world_map[end.x()][end.y()];
-    // This holds the distances of each point
-    std::vector<std::vector<int32_t>> dist(MAP_SIZE, std::vector<int32_t>(MAP_SIZE, INT32_MAX));
-    std::vector<Tile> path(MAP_SIZE); 
-    std::priority_queue<Tile> pq;
+
+    std::vector<Point> prev;
+    std::unordered_set<Tile, Tile()> visited; 
+    std::priority_queue<std::pair<int32_t, Tile>> pq;
 
     // Set the first tile distance
-    dist[start.x()][start.y()] = 0;
+    
 
     // Insert the first tile in the queue
-    pq.push(map.world_map[start.x()][start.y()]);
+    pq.push({manhattan(FIRST_TILE.get_point(), END_TILE.get_point()), map.world_map[start.x()][start.y()]});
 
     //Start the Dijkstras
     while (!pq.empty()) {
         // Pop the top of the queue
-        Tile current_tile = pq.top();
+        Tile current_tile = pq.top().second;
         pq.pop();
 
         //Just check if we at the end already
@@ -35,19 +37,12 @@ std::vector<Point> Pathfinder::Dijkstras(const World &map, const Point& start, c
 
                 // Get the cost
                 uint32_t cost = map.get_tile(current_point).weight();
-
-
+                cost += current_point.distance_to(end);
+                std::pair<int32_t, Tile> tmp = {cost, map.get_tile(current_point)};
+                
             }
         }
 
 
     }
-    
-
-    
-
-
-}
-std::vector<Point> Pathfinder::A_star(const World &map, const Point& start, const Point& end) {
-
 }

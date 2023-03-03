@@ -9,6 +9,7 @@
 
 class Pathfinder {
     public: 
+        //I might implement dijkstras, maybee
         static std::vector<Point> Dijkstras(const World&, const Point&, const Point&);
         static std::vector<Point> A_star(const World&, const Point&, const Point&);
 };
